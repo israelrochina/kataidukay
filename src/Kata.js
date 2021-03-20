@@ -37,43 +37,42 @@ componentWillMount(){
     this.setState({printerArray:printerArray});
 }
 
-
 loopArrayInSnail(){
-  // console.log('Array',this.state.printerArray)
-  const loopArray=this.state.printerArray;
-  const result=[]
+const loopArray=this.state.printerArray;
+console.log(loopArray)
 
-  const columNumber=loopArray[0].length-1;
-  const rowNumber=loopArray.length-1;
+let result=[];
+const colNumber=loopArray[0].length-1;
+const rowNumber=loopArray.length-1;
 
-
-console.log('ColNumber',columNumber)
-console.log('rowNumber',rowNumber)
-
-  for(let item=0;item<=columNumber;item++){
-    
-    result.push(loopArray[0][item]);
-  
-  }
-
-  for(let row=1;row<=rowNumber;row++){
-    result.push(loopArray[row][columNumber]);
-  }
-
-  for(let row=columNumber-1;row>=0;row--){
-    result.push(loopArray[rowNumber][row]);
-  
-  }
-
-  for(let up=0;up<=columNumber-1;up++){
-    result.push(loopArray[rowNumber-1][up]);
-  
-  }
-
-console.log('Array',result)
-this.setState({resultArray:result})
+console.log('row:'+rowNumber+' column: '+colNumber)
+/* Rellenado en la parte superior */
+for(let item=0;item<=colNumber;item++){
+  result.push(loopArray[0][item])
 }
-//loopArray[fila][columna]
+
+/* Rellenado lateral */
+for(let row=1;row<=rowNumber;row++){
+  result.push(loopArray[row][colNumber])
+}
+
+/* Rellenado parte inferior */
+for(let row=colNumber-1;row>=0;row--){
+  result.push(loopArray[rowNumber][row])
+}
+
+/* Rellenado final */
+for(let up=0;up<=colNumber-1;up++){
+  result.push(loopArray[rowNumber-1][up])
+}
+
+
+/* Asignamos el valor de result en resultArray */
+this.setState({resultArray:result})
+
+}
+
+
 
 
     render() {
